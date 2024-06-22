@@ -181,13 +181,6 @@ This screenshot displays:
 
 ![Capture](https://github.com/BaselAbuHamed/HadoopProject/assets/107325485/a968ccba-e930-4c33-ac31-9b544a99fff3)
 
-## Hadoop Web Interfaces
-Hadoop provides several web interfaces that offer valuable insights into the cluster's health, job progress, and file system status. The key interfaces are:
-
-1. ResourceManager Web Interface (http://localhost:8088/cluster): This interface provides an overview of the cluster's resource usage, applications running, and their statuses.
-   
-
-2. NameNode Web Interface (http://localhost:9870/dfshealth.html#tab-overview): This interface offers insights into the HDFS health, including live and dead DataNodes, storage capacity, and file system status.
 
 
 
