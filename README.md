@@ -6,6 +6,12 @@ Apache Hadoop is a platform that facilitates using a network of many computers t
 
 This project modifies a previous project to use Hadoop for distributed storage and processing. The project reads integers from files stored in HDFS, checks if they are prime numbers, and finds the closest prime numbers.
 
+## What is MapReduce?
+MapReduce is a programming model used to process and generate large data sets. It consists of two main tasks:
+
+ - Map: Processes input key/value pairs to generate a set of intermediate key/value pairs.
+ - Reduce: Merges all intermediate values associated with the same intermediate key.
+
 ## Requirements
 
 - Java 8
@@ -106,4 +112,82 @@ This project modifies a previous project to use Hadoop for distributed storage a
     ```bash
     hdfs dfs -cat /user/yourusername/output/part-r-00000
     ```
+    
+    example :
+
+![Capture](https://github.com/BaselAbuHamed/HadoopProject/assets/107325485/841cd006-9e10-409c-891b-cca54210a078)
+
+    
+- 100 false,101: The number 100 is not a prime number (false), and the next prime number after 100 is 101.
+- 12 false,13: The number 12 is not a prime number (false), and the next prime number after 12 is 13.
+- 23 true,29: The number 23 is a prime number (true), and the next prime number after 23 is 29.
+- 35 false,37: The number 35 is not a prime number (false), and the next prime number after 35 is 37.
+- 45 false,47: The number 45 is not a prime number (false), and the next prime number after 45 is 47.
+- 5 true,7: The number 5 is a prime number (true), and the next prime number after 5 is 7.
+- 67 true,71: The number 67 is a prime number (true), and the next prime number after 67 is 71.
+- 89 true,97: The number 89 is a prime number (true), and the next prime number after 89 is 97.
+- 9 false,11: The number 9 is not a prime number (false), and the next prime number after 9 is 11.
+
+This output shows the integer processed, whether it is a prime number or not, and the next prime number.
+
+## Problems Faced and Solutions Attempted
+1. **Java Version Compatibility:**
+
+    - Issue: Encountered UnsupportedClassVersionError due to incompatible Java versions.
+    - Solution: Downgraded project to Java 8 by updating pom.xml and ensuring the environment used Java 8.
+   
+2. **SLF4J Binding Conflict:**
+
+    - Issue: Multiple SLF4J bindings causing logging issues.
+    - Solution: Excluded conflicting SLF4J dependencies and ensured only one binding was used.
+   
+3. **DataNode and NameNode Communication:**
+
+    - Issue: Incompatible cluster IDs between DataNode and NameNode.
+    - Solution: Reformatted the DataNode and NameNode directories and reinitialized Hadoop.
+4. **File Not Found in HDFS:**
+
+    - Issue: Errors in specifying correct file paths for input and output in HDFS.
+    - Solution: Verified file paths using HDFS commands and ensured correct directory structure.
+
+
+## Monitoring the Hadoop Cluster
+
+### ResourceManager Web Interface
+
+The ResourceManager web interface, accessible at [http://localhost:8088/cluster](http://localhost:8088/cluster), provides an overview of the cluster's resource usage and the status of running applications. This interface helps you monitor the applications submitted to the cluster, their progress, and resource allocation.
+
+   ![Capture](https://github.com/BaselAbuHamed/HadoopProject/assets/107325485/ef6e638c-5f61-4524-b303-ca386314292e)
+
+
+### NameNode Web Interface
+
+The NameNode web interface, accessible at [http://localhost:9870/dfshealth.html#tab-overview](http://localhost:9870/dfshealth.html#tab-overview), provides detailed information about the HDFS health. It shows the status of DataNodes, storage capacity, and the overall health of the file system.
+
+![Capture](https://github.com/BaselAbuHamed/HadoopProject/assets/107325485/ded764bc-f323-4296-8ea1-817af47d3916)
+
+
+### Example of a Running MapReduce Job
+
+Below is an example screenshot of the ResourceManager web interface showing the status of the Prime Number Finder MapReduce job:
+
+
+
+This screenshot displays:
+
+- **Cluster Metrics:** Information about the number of applications submitted, pending, running, and completed, as well as the resource usage.
+- **Scheduler Metrics:** Details about the scheduling of resources.
+- **Application Details:** Information about the MapReduce job, including the application ID, user, name, type, queue, priority, start time, finish time, state, and final status.
+
+![Capture](https://github.com/BaselAbuHamed/HadoopProject/assets/107325485/a968ccba-e930-4c33-ac31-9b544a99fff3)
+
+## Hadoop Web Interfaces
+Hadoop provides several web interfaces that offer valuable insights into the cluster's health, job progress, and file system status. The key interfaces are:
+
+1. ResourceManager Web Interface (http://localhost:8088/cluster): This interface provides an overview of the cluster's resource usage, applications running, and their statuses.
+   
+
+2. NameNode Web Interface (http://localhost:9870/dfshealth.html#tab-overview): This interface offers insights into the HDFS health, including live and dead DataNodes, storage capacity, and file system status.
+
+
 
